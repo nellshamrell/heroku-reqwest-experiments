@@ -1,12 +1,15 @@
 // These examples are largely from https://docs.rs/reqwest/0.10.4/reqwest/index.html
 use std::collections::HashMap;
 
+mod heroku;
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    example_one().await?;
-    example_two().await?;
-    example_three().await?;
-    example_four().await?;
+//    example_one().await?;
+//    example_two().await?;
+//    example_three().await?;
+//    example_four().await?;
+    heroku::run_command().await?;
     Ok(())
 }
 
