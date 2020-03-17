@@ -11,7 +11,7 @@ pub struct Heroku {
 }
 
 impl Heroku {
-    fn new(auth_token: String) -> Self {
+    pub fn new(auth_token: String) -> Self {
         let heroku_client = Client::new();
 
         let mut headers = HeaderMap::new();
@@ -28,19 +28,8 @@ impl Heroku {
     }
 }
 
-pub async fn run_command() -> Result<(), Box<dyn std::error::Error>> {
-    let heroku_client = Heroku::new(dotenv::var("AUTH_TOKEN").unwrap());
+pub async fn run_command(heroku_client: Heroku) -> Result<(), Box<dyn std::error::Error>> {
     println!("heroku_client {:?}", heroku_client);
-    //    curl -X POST https://api.heroku.com/apps \
-    //-H "Accept: application/vnd.heroku+json; version=3" \
-    //-H "Authorization: Bearer $HEROKU_API_KEY"
-
-    // curl -nX GET https://api.heroku.com/apps \
-    // -H "Accept: application/vnd.heroku+json; version=3"
-    //    let res = reqwest::get("https://api.heroku.com")
-    //       .await?
-    //      .text()
-    //     .await?;
 
     let request = heroku_client
         .client
